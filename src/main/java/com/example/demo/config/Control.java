@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.student.repo.Student;
 import com.example.demo.student.repo.StudentRepository;
 
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisShardInfo;
-
 @RestController
 @RequestMapping("/redis/*")
 public class Control {
@@ -66,20 +63,6 @@ public class Control {
 	public String healthCheck() throws InterruptedException{
 		return "System is UP!!";
 		
-	}
-	
-	@RequestMapping(value="/save1", method=RequestMethod.GET)
-	@ResponseBody
-	public String save1() throws InterruptedException{
-		/*Student s = new Student("1","Akki","male",1);
-		repo.saveStudent(s);*/
-		JedisShardInfo jediShard = new JedisShardInfo("akkiRedisCache.redis.cache.windows.net", 6380, true);
-		jediShard.setPassword("IxzBsanhDL27zdODrHR1nZ1IDULS6lPIqABzqjjsaGs=");
-		Jedis jedis = new Jedis(jediShard);
-		jedis.set("food", "barss");
-		return jedis.get("food");
-		
-		//return "saved1";
 	}
 	
 
